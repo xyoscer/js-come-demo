@@ -2,7 +2,7 @@
   * created by xyoscer
   */
 
-  /* 创建单例 */
+  /* 管理单例 */
 var getSingle = function(fn) {
    var result;
    return function() {
@@ -35,8 +35,8 @@ var createLoginLayer = function() {
 var show = function() {
 	var loginLayer = createSingleLoginLayer();
 	var dropBack = document.getElementById('dropBack');
-	//获取浏览器的宽和高
-    var top = (document.documentElement.clientHeight - 250) / 2 - 150;
+	//获取浏览器的宽和高,设置初始弹窗在屏幕中的位置    
+    var top = (document.documentElement.clientHeight - 250) / 2 ;
     var left = (document.documentElement.clientWidth - 300) / 2;
 	loginLayer.style.display = 'block';
 	loginLayer.style.left = left + 'px'; //登录弹窗在屏幕中的位置
@@ -53,35 +53,36 @@ var dragWindow = function(event) {
     //拖拽的第一步,记录鼠标相对于拖动对象（left和top值）坐标
    
     var diffX = e.clientX - target.offsetLeft;    
-    var diffY = e.clientY - target.offsetTop; 
-   
+    var diffY = e.clientY - target.offsetTop;  
+    
    //拖拽第二步，移动鼠标过程中，不断改变对象的坐标值，实现弹窗跟随鼠标移动效果
     var move = function(e) {    	
     	var left = e.clientX-diffX;
         var top = e.clientY-diffY;
             if(left<0){
             	left = 0;
-            }else if(left>document.documentElement.clientWidth - e.clientX){
+            }else if(left>document.documentElement.clientWidth - target.offsetWidth){
                 //没有使用document.body.clientWidth因为此时页面的高度只有100多，而现在要求弹窗在整个可视区中移动
             	left = document.documentElement.clientWidth - target.offsetWidth;
             }
 
            if(top<0){
             	top = 0;
-            }else if(top>document.documentElement.clientHeight - e.clientY){
+            }else if(top>document.documentElement.clientHeight - target.offsetHeight ){
             	top = document.documentElement.clientHeight - target.offsetHeight;
             }
             target.style.left = left + 'px';
-            target.style.top = top + 'px';
+            target.style.top = top + 'px';          
+
        };
       //拖拽第三步，鼠标松开，解除鼠标移动事件
       var up = function(event) {
       	EventUtil.removeHandler(document,"mousemove",move);
-      	EventUtil.removeHandler(document,"mouseup",up);    
+      	    
       };   
 //绑定鼠标事件
-  EventUtil.addHandler(document,"mousemove",move);
-  EventUtil.addHandler(document,"mouseup",up);	
+  EventUtil.addHandler(document,"mousemove",move); 
+ EventUtil.addHandler(document,"mouseup",up);	
 };
 
 var createSingleLoginLayer = getSingle(createLoginLayer);
