@@ -15,7 +15,7 @@ var EventUtil = {
   		element.removeEventListener(type,handler,false);
   	}
   	else if(element.detachEvent) {
-  		element.detachEvent("on"+type,handle);
+  		element.detachEvent("on"+type,handler);
   	}else{
   		element["on"+type] = null;
   	}
