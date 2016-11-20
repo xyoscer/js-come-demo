@@ -47,13 +47,13 @@
            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     
    
-}
-.btn:focus {
-  color: #333;
-  background-color: #30e3c2;
-  outline: 0;
-  text-decoration: none;
-}
+       }
+          .btn:focus {
+             color: #333;
+             background-color: #30e3c2;
+             outline: 0;
+             text-decoration: none;
+         } 
 	</style>
 
 </head>
@@ -65,8 +65,8 @@
 		<button class="btn" id="read">读取数据</button>
 	</div>
 	<script>
-			var save = document.getElementById('save'),
-            read = document.getElementById('read');           
+           var save = document.getElementById('save'),
+               read = document.getElementById('read');           
              save.onclick = function() {
              	  var  testValue = document.getElementById('testValue').value;
                   var  testValue1 = document.getElementById('testValue1').value;
@@ -77,13 +77,8 @@
              }
              read.onclick = function() {
              	var msg = sessionStorage.getItem("time");
-			     alert(msg);
-             }
-
-		
-		
-
-          
+	           alert(msg);
+             }         
 		
 	</script>
 </body>
