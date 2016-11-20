@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sessionStorage</title>
+	<style>
+        body,html {
+        	margin:0;
+        	padding:0;
+        }
+        #form-group {
+        	max-width: 600px;
+        	margin:10px auto;
+
+        }
+       .form-control {
+          display: inline-block;
+          width: 15%;
+          height: 34px;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.42857143;
+          color: #555; 
+          border: 1px solid #ccc; 
+          border-radius: 4px;  
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);  
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+       .form-control:focus {
+          border-color: #66afe9;
+          outline: 0;
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+       .btn {
+           display: inline-block;
+           width: 20%;    
+           background:  #fff;
+           border: 1px solid #5CE6CD;
+           border-radius: 20px;
+           color: #9B9B9B;
+           text-transform: uppercase;
+           padding: 6px 10px;   
+           line-height: 1.4;
+           text-align: center;   
+           cursor: pointer;   
+           box-shadow: inset -1px -1px 2px rgba(0, 0, 0, .075);
+           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    
+   
+}
+.btn:focus {
+  color: #333;
+  background-color: #30e3c2;
+  outline: 0;
+  text-decoration: none;
+}
+	</style>
+
+</head>
+<body>
+	<div id="form-group">
+		<input type="text" id= "testValue" placeholder="测试数据" class="form-control">
+		<input type="text" id= "testValue1" placeholder="测试数据1" class="form-control">
+		<button class="btn" id="save">保存数据</button>
+		<button class="btn" id="read">读取数据</button>
+	</div>
+	<script>
+			var save = document.getElementById('save'),
+            read = document.getElementById('read');           
+             save.onclick = function() {
+             	  var  testValue = document.getElementById('testValue').value;
+                  var  testValue1 = document.getElementById('testValue1').value;
+             	  var data = {name:testValue,pwd:testValue1};
+                  var str = JSON.stringify(data); 
+             	sessionStorage.setItem("time",str);
+
+             }
+             read.onclick = function() {
+             	var msg = sessionStorage.getItem("time");
+			     alert(msg);
+             }
+
+		
+		
+
+          
+		
+	</script>
+</body>
+</html>
