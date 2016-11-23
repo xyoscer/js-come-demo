@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>position+margin</title>
+	<style>
+       * {
+      	margin: 0;
+      	padding: 0;
+      	box-sizing:border-box;
+
+      }
+      body,html {
+      	width: 100%;
+      }
+      #main {
+      	margin:10px auto;
+      	width: 80%;
+
+      }
+      #left {
+      	width: 200px;
+        position: absolute;
+      	border:1px solid #eee;
+      }
+      #content {
+      	margin-left: 200px;
+      	border:1px solid #ddd;
+
+      	
+      }
+      /*使用额外标签清除浮动*/
+	  .clearboth {
+	  	clear: both;
+	  }
+	</style>
+</head>
+<body>
+	  <div id="main">
+	<div id="left">Left position</div>
+	<div id="content"> Content margin-left</div>
+	<br class="clearboth">
+	</div>
+</body>
+</html>

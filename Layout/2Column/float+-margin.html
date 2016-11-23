@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float加负margin</title>
+	<style>
+      * {
+      	margin: 0;
+      	padding: 0;
+      	box-sizing:border-box;
+
+      }
+      body,html {
+      	width: 100%;
+      }
+      #main {
+      	margin:10px auto;
+      	width: 80%;
+
+      }
+      /*清除浮动*/
+      #main::after {
+      	content: "";
+      	display: block;
+      	clear: both;
+      }
+		#left {
+			border:1px solid #eee;
+			float: left;
+			width: 220px;
+			margin-right: -100%;
+		}
+		
+		#content {
+			float: left;
+			width: 100%;
+		}
+		
+		#contentInner {
+			margin-left: 220px;/*==等于左边栏宽度值==*/			
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+<div id="main">
+	<div id="left">
+			Left Sidebar float
+		</div>
+		<div id="content">
+			<div id="contentInner">
+				Main Content 负margin
+			</div>
+		</div>
+
+</div>
+</body>
+</html>

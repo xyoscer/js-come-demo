@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一列定宽，一列自适应</title>
+	<style>
+      * {
+      	margin: 0;
+      	padding: 0;
+      	box-sizing:border-box;
+
+      }
+      body,html {
+      	width: 100%;
+      }
+      #main {
+      	margin:10px auto;
+      	width: 80%;
+      	overflow: hidden;/*清除浮动*/
+      }
+      #left {
+      	width: 200px;
+        float:left;
+      	border:1px solid #eee;
+      }
+      #content {
+      	margin-left: 200px;
+      	border:1px solid #ddd;
+
+      }
+	</style>
+</head>
+<body>
+   <div id="main">
+	<div id="left">Left float</div>
+	<div id="content"> Content margin-left</div>
+	</div>
+</body>
+</html>

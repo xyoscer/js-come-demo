@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用flex实现两列布局</title>
+	<style>
+       html,body {
+       	margin:0;
+       	padding: 0;
+       	box-sizing:border-box;
+       	width: 100%;
+       }
+       #main {
+       	display: flex;
+       	margin:10px auto;
+       	align-items: flex-start;
+       	justify-content: flex-start;
+       }
+       #left {
+       	  width: 200px;
+       	  border:1px solid red;
+
+       }
+       #content {
+       	border:1px solid green;
+        flex-grow:1; 
+        flex-shrink: 1;
+       
+       }
+	</style>
+</head>
+<body>
+<div id="main">
+	<div id="left">Left float</div>
+	<div id="content"> Content margin-left</div>
+</div>
+</body>
+</html>

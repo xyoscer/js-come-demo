@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        html,body {
+        	margin:0;
+        	padding: 0;
+        	box-sizing:border-box;
+        	width: 100%;
+        }
+        #main {
+        	width: 80%;
+        	margin:10px auto;
+        }
+        #main::after {
+        	content: "";
+        	display: block;
+        	clear: both;
+        }
+        #left {
+        	float:left;
+        	width:200px;
+        	border:1px solid red;
+        }
+        #content {
+        	/*BFC的区域不会与float box重叠。通过触发content生成BFC， 来实现自适应两栏布局*/
+        	overflow: hidden;
+        	border:1px solid green;
+        }
+	</style>
+</head>
+<body>
+	  <div id="main">
+	<div id="left">Left float</div>
+	<div id="content"> Content margin-left</div>
+	</div>
+</body>
+</html>
