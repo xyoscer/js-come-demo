@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享案例</title>
+	<link rel="stylesheet" href="index2.css">
+	<style>
+	*{
+		margin:0;
+		padding: 0;
+	}
+         #line-share{
+         	width: 840px;
+         	height: 50px;
+         	border: 1px solid #ddd;
+	        box-shadow: 2px 2px #eee;
+	        margin-left: 50px;
+
+         }
+         ul{
+         	width: 838px;
+         	height: 48px;
+         	list-style: none;
+         	position: relative;
+         }
+        
+         ul li{
+         	float: left;
+         	font-size: 14px;         
+	        padding:10px 10px;
+         }
+        ul li a{
+	     display: block;
+	     text-decoration:none;
+	     width: 80px;
+	     height: 30px;
+	    line-height: 30px;
+	    text-align: center;	   
+	    text-indent: 15px;
+         
+}
+ ul li a:not(#spec){
+	    
+        background-image:url(../img/share_bg.png);
+    	background-repeat:no-repeat;  
+}
+
+ ul li a:hover{
+ 	color:#000;
+    text-decoration:underline;	
+    
+ }  
+ ul li a.i {
+	background-position:5px -235px;
+}
+ ul li a.b {
+	background-position:0 -25px;
+}
+ul li a.c {
+	background-position:0 -55px;
+}
+ul li a.d {
+	background-position:0 -85px;
+}
+ul li a.e {
+	background-position:0 -115px;
+}
+ul li a.f {
+	background-position:0 -145px;
+}
+ul li a.p {
+	background-position:0 -445px;
+}
+.tip{
+	width: 100px;
+	height: 20px;
+	border: 1px solid #eee;
+	background: #E4E4E4;
+	position: absolute;
+	font-size: 12px;	
+	line-height: 20px;
+	text-align: center;
+	border-radius: 4px;
+	display: none;
+	top:35px;
+
+}
+#tip1{ 
+	
+	left:100px;
+}
+#tip2{ 
+	
+	left:200px;
+}
+#tip3{ 
+	
+	left:300px;	
+}	
+
+#tip4{ 
+	
+	left:400px;
+}
+#tip5{ 
+	
+	left:500px;
+}
+#tip6{ 
+	
+	left:600px;
+}
+
+#tip7{ 	
+	left:730px;
+	top:10px;
+	width: 300px;
+	height: 300px;
+	border: 1px solid #ddd;
+	box-shadow: 2px 2px #eee;
+	
+}
+ 
+</style>
+
+
+</head>
+<body>
+
+<div id=line-share>
+	<ul id="item">	
+	    <li><a href="#" id="spec">分享到:</a></li>
+		<li class="firtli" id="item1"><a href="#" class="i">QQ空间</a></li>
+		<div class="tip"   id="tip1">分享到QQ空间</div>
+		<li class="firtli" id="item2"><a href="#" class="b">新浪微博</a></li>
+		<div class="tip"   id="tip2">分享到微博</div>
+		<li class="firtli" id="item3"><a href="#" class="c">人人网</a></li>
+		<div class="tip"   id="tip3">分享到人人网</div>
+		<li class="firtli" id="item4"><a href="#" class="d">百度相册</a></li>
+		<div class="tip"   id="tip4">分享到百度相册</div>
+		<li class="firtli" id="item5"><a href="#" class="e">腾讯朋友</a></li>
+        <div class="tip"   id="tip5">分享到腾讯朋友</div>
+		<li class="firtli" id="item6"><a href="#" class="f">豆瓣网</a></li>
+		<div class="tip"   id="tip6">分享到豆瓣网</div>		
+		<li class="firtli" id="item7"><a href="#" class="p" id="more">更多...</a></li> 
+		<div class="tip" id="tip7">
+			 <h3><img src="../img/chaohao.png" class="close">分享到更多网站</h3>
+			   	   <ul>
+					<li><a href="#" class="a">一键分享</a></li>
+					<li><a href="#" class="b">新浪微博</a></li>
+					<li><a href="#" class="c">人人网</a></li>
+					<li><a href="#" class="d">百度相册</a></li>
+					<li><a href="#" class="e">腾讯朋友</a></li>
+					<li><a href="#" class="f">豆瓣网</a></li>
+					<li><a href="#" class="g">百度首页</a></li>		
+					<li><a href="#" class="i">QQ空间</a></li>
+					<li><a href="#" class="j">百度搜藏</a></li>	
+					<li><a href="#" class="l">开心网</a></li>
+					<li><a href="#" class="m">百度贴吧</a></li>	
+					<li><a href="#" class="o">QQ好友</a></li>
+					<li><a href="#" class="l">开心网</a></li>
+					<li><a href="#" class="m">百度贴吧</a></li>	
+					<li><a href="#" class="o">QQ好友</a></li>
+					<li><a href="#" class="l">开心网</a></li>
+					<li><a href="#" class="m">百度贴吧</a></li>	
+					<li><a href="#" class="o">QQ好友</a></li>
+				</ul> 
+		</div>
+	</ul>
+	
+	
+</div>
+<script>
+ 
+	window.onload = function(){
+		var item =document.getElementById('item');
+		var tips = document.getElementsByClassName('tip');
+		var lis = document.getElementsByClassName('firtli');
+		var more = document.getElementById('more');
+        var moreArea  = document.getElementById('moreArea');
+        var close = document.getElementsByClassName('close');
+		item.addEventListener("mouseover",move,false);	
+
+		function move(event){
+            var event = event||window.event;
+            var target=event.target||event.srcElement; 
+            switch(target.id){
+            	case "item1": 
+            	    missAllExceptThis(0);          	
+            	    break;
+                case "item2":            	   
+            	 missAllExceptThis(1);
+            	  break;
+                case "item3":            	   
+            	  missAllExceptThis(2);
+            	  break;
+            	 case "item4":            	   
+            	  missAllExceptThis(3);
+            	  break;
+            	   case "item5":            	   
+            	  missAllExceptThis(4);
+            	  break;
+            	   case "item6":            	   
+            	  missAllExceptThis(5);
+            	  break; 
+            	  case "item7":
+            	  missAllExceptThis(6);           	  
+            	  
+                 
+            }
+		} 
+		function missAllExceptThis(index){			  
+              
+                for(var i=0;i<lis.length;i++){
+                         if(index!=i){
+                         	tips[i].style.display = 'none';
+                         }
+                         else{
+                         	tips[i].style.display = 'block';
+
+                         }
+                }
+
+
+		}
+		close[0].addEventListener("click",function(){
+             tips[6].style.display = 'none';
+		},false);
+		
+	}
+</script>
+</body>
+</html>

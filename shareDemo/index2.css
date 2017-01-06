@@ -1,0 +1,90 @@
+*{
+	margin:0;
+	padding:0;
+}
+h3{
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #eee;
+	color:#333; 
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-indent: 14px;
+
+}
+.close {
+    position: absolute;  
+    float:right;
+    top:-2px;
+    right:5px; 
+    padding:5px;
+    cursor: pointer;
+   
+    
+}
+
+#tip7 ul{
+	height:200px;
+	width: 300px;
+    list-style: none;
+}
+#tip7 ul li{
+	float:left;	
+	font-size: 12px;
+	padding:5px 5px;
+}
+#tip7 ul li a{
+	display: block;
+	text-decoration:none;
+	width: 70px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	padding:3px 5px;
+	text-indent: 10px;
+    background-image:url(../img/share_bg.png);
+  	background-repeat:no-repeat; 
+}
+ #tip7 ul li a:hover{
+	color:#333;
+	background-color: #d5d5d5;
+} 
+ #tip7 ul li a.a {
+	 background-position:5px 5px; 
+}
+
+ #tip7 ul li a.b {
+	background-position:5px -25px;
+}
+#tip7 ul li a.c {
+	background-position:5px -55px;
+}
+#tip7 ul li a.d {
+	background-position:5px -85px;
+}
+#tip7 ul li a.e {
+	background-position:5px -115px;
+}
+#tip7 ul li a.f {
+	background-position:5px -145px;
+}
+#tip7 ul li a.g {
+	background-position:5px -175px;
+}
+#tip7 ul li a.i {
+	background-position:5px -235px;
+}
+#tip7 ul li a.j {
+	background-position:5px -265px;
+}
+#tip7 ul li a.l {
+	background-position:5px -325px;
+}
+#tip7 ul li a.m {
+	background-position:5px -355px;
+}
+#tip7 ul li a.o {
+	background-position:5px -415px;
+}
+#tip7 ul li a.p {
+	background-position:5px -445px;
+}

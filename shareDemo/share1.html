@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度分享按钮效果</title>
+	<link rel="stylesheet" href="index1.css">
+</head>
+<body>
+	<div id="share">
+	<h3><img src="../img/chaohao.png" class="close">分享到...</h3>
+	<ul>
+		<li><a href="#" class="a">一键分享</a></li>
+		<li><a href="#" class="b">新浪微博</a></li>
+		<li><a href="#" class="c">人人网</a></li>
+		<li><a href="#" class="d">百度相册</a></li>
+		<li><a href="#" class="e">腾讯朋友</a></li>
+		<li><a href="#" class="f">豆瓣网</a></li>
+		<li><a href="#" class="g">百度首页</a></li>	
+		<li><a href="#" class="i">QQ空间</a></li>
+		<li><a href="#" class="j">百度搜藏</a></li>	
+		<li><a href="#" class="l">开心网</a></li>
+		<li><a href="#" class="m">百度贴吧</a></li>	
+		<li><a href="#" class="o">QQ好友</a></li>
+		<li><a href="#" class="p" id="more">更多...</a></li>
+	</ul>
+	<div class="share_footer"><a href="#">oscer分享</a></div>
+    <div id='shareTag'></div>
+</div>
+   <div id="moreArea">
+       <h3><img src="../img/chaohao.png" class="close">分享到更多网站</h3>
+   	   <ul>
+		<li><a href="#" class="a">一键分享</a></li>
+		<li><a href="#" class="b">新浪微博</a></li>
+		<li><a href="#" class="c">人人网</a></li>
+		<li><a href="#" class="d">百度相册</a></li>
+		<li><a href="#" class="e">腾讯朋友</a></li>
+		<li><a href="#" class="f">豆瓣网</a></li>
+		<li><a href="#" class="g">百度首页</a></li>		
+		<li><a href="#" class="i">QQ空间</a></li>
+		<li><a href="#" class="j">百度搜藏</a></li>	
+		<li><a href="#" class="l">开心网</a></li>
+		<li><a href="#" class="m">百度贴吧</a></li>	
+		<li><a href="#" class="o">QQ好友</a></li>
+		<li><a href="#" class="l">开心网</a></li>
+		<li><a href="#" class="m">百度贴吧</a></li>	
+		<li><a href="#" class="o">QQ好友</a></li>
+		<li><a href="#" class="l">开心网</a></li>
+		<li><a href="#" class="m">百度贴吧</a></li>	
+		<li><a href="#" class="o">QQ好友</a></li>
+	</ul>
+   </div>
+<script>
+	window.onload = function(){
+
+       var shareArea = document.getElementById('share');
+       var exit = document.getElementsByClassName('close');
+       var more = document.getElementById('more');
+       var moreArea  = document.getElementById('moreArea');
+
+       //鼠标移入分享区域，分享区域内容呈现
+           shareArea.addEventListener("mouseover",function(){      
+
+       	       shareArea.style.top = '0';
+       	       shareArea.style.left = '0';   
+            //添加一个动画效果
+       	       shareArea.className = 'animate';    
+       	 
+           },false);
+
+        //鼠标移出分享区域，分享区域内容消失
+           shareArea.addEventListener("mouseout",function(){       
+ 
+       	     shareArea.style.top = '0';
+       	     shareArea.style.left = '-280px';      
+       	     shareArea.className = 'animate';     
+       	 
+            },false);
+
+       //点击差号分享内容区域整个消失
+          exit[0].addEventListener("click",function(){       
+       	    shareArea.style.display = 'none';
+       	 
+          },false);
+
+      //点击更多选项弹出所有的分享内容
+          more.addEventListener("click",function(){
+          	     shareArea.style.display = 'none';     	 
+                 moreArea.style.display = 'block';
+          },false);
+
+          exit[1].addEventListener("click",function(){      
+       	    moreArea.style.display = 'none';
+       	 
+          },false);
+        
+	}
+
+</script>
+ 
+</body>
+</html>

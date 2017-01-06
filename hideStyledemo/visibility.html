@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>visibility隐藏元素使用</title>
+	<style>
+          div {
+  padding: 60px;
+  width: 60px;
+  font-size: 14px;
+  background: pink;
+  text-align: center;
+  margin: 1%; 
+  float: left;
+  cursor: pointer;
+  
+}
+
+.visibility-hide {
+  visibility: hidden;
+  transition: all ease 0.8s;
+}
+/* 虽然设置了隐藏效果，但是不会影响用户的交互操作 */
+.visibility-hide:hover {
+  visibility: visible;
+}
+ /* 父元素被隐藏了，这时设置子元素为显示状态，此时子元素显示，但父元素不会显示 */
+.visibility-hide p {
+  visibility: visible;
+  margin: 0;
+  padding: 0;
+}
+	</style>
+</head>
+<body>
+	<div>1</div>
+    <div class="visibility-hide"><p id="visi-p">2</p></div>
+    <div>3</div>
+    <script>
+ var oHide = document.getElementsByClassName('visibility-hide');
+ var oHideP = document.getElementById('visi-p');
+ var count = oHideP.innerHTML;
+
+oHide[0].addEventListener("click", function(){
+    count++;
+    oHideP.innerHTML = count;
+});
+    </script>
+</body>
+</html>

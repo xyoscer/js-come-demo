@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>position隐藏元素的应用</title>
+	<style>
+       div {
+  height: 60px;
+  padding: 60px 0;
+  width: 180px;
+  font-size:14px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+  margin: 1%;  
+  float: left;
+  cursor: pointer;
+ 
+}
+
+.position-hide {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+input{
+	position: absolute;
+	top:-2880px;
+	left:-2880px;
+
+}
+/* 这个用户效果不会起作用，因为此时的div不在可视区内 */
+.position-hide:hover {
+  position: static;
+}
+	</style>
+</head>
+<body>
+	<div>点击元素，有惊喜</div>
+    <div class="position-hide"><p>0</p></div>
+    <div><input type="radio" value = "获得焦点">3</div>
+    <script>
+ var count = 0;
+var oHide = document.getElementsByClassName('position-hide');
+var Div = document.getElementsByTagName('div');
+var input = document.getElementsByTagName('input');
+
+Div[0].addEventListener("mouseover", function(){
+    count++;
+    oHide[0].innerHTML = '<p>' +'你的鼠标移近第一个div：'+ count + '次'+'</p>';
+});
+Div[2].addEventListener("click",function(){
+	input[0].style.position = "static";
+});
+Div[0].addEventListener("click", function(){
+
+    oHide[0].style.position = "static";
+    
+});
+    </script>
+</body>
+</html>
