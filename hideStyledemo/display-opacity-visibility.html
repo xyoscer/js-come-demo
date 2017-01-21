@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>用 CSS 隐藏页面元素的几种方法对比</title>
-	<style>
+    <meta charset="UTF-8">
+    <title>用 CSS 隐藏页面元素的几种方法对比</title>
+    <style>
         div {
-  height: 60px;
-  padding: 60px 0;
-  width: 180px;
-  font-size: 16px;
-  line-height: 60px;
-  background: pink;
-  text-align: center;
-  margin: 1%; 
-  float: left;
-  cursor: pointer;
- 
-}
+            height: 60px;
+            padding: 60px 0;
+            width: 180px;
+            font-size: 16px;
+            line-height: 60px;
+            background: pink;
+            text-align: center;
+            margin: 1%;
+            float: left;
+            cursor: pointer;
 
-.display-hide {
-  display: none;
-  transition: all ease 0.8s;
-}
+        }
 
-.display-hide:hover { /* 当鼠标悬浮在该元素时，设置为block,此时元素也不会出现 ，因为被display隐藏的元素，不占据任何空间，用户的交互操作也不能生效*/
-  display: block;
-}
+        .display-hide {
+            display: none;
+            transition: all ease 0.8s;
+        }
 
-.display-hide p {/* 同样的隐藏元素的子孙后代元素也会被隐藏，即使后代元素属性设置为block */
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-	</style>
+        .display-hide:hover { /* 当鼠标悬浮在该元素时，设置为block,此时元素也不会出现 ，因为被display隐藏的元素，不占据任何空间，用户的交互操作也不能生效*/
+            display: block;
+        }
+
+        .display-hide p { /* 同样的隐藏元素的子孙后代元素也会被隐藏，即使后代元素属性设置为block */
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-	<div>鼠标移近来，然后在点击有惊喜哦</div>
-    <div class="display-hide"><p>0</p></div>
-    <div>第三个div块</div>
-    <script>
+<div>鼠标移近来，然后在点击有惊喜哦</div>
+<div class="display-hide"><p>0</p></div>
+<div>第三个div块</div>
+<script>
     var count = 0;
     var DHide = document.getElementsByClassName('display-hide');
     var Div = document.getElementsByTagName('div');
 
-    Div[0].addEventListener("mouseover", function(){
-    count++;
-    DHide[0].innerHTML = '<p>' +'你的鼠标移近第一个div：'+ count + '次'+'</p>';
-   });
+    Div[0].addEventListener("mouseover", function () {
+        count++;
+        DHide[0].innerHTML = '<p>' + '你的鼠标移近第一个div：' + count + '次' + '</p>';
+    });
 
-    Div[0].addEventListener("click", function(){
-    DHide[0].style.display = "block";
-  });
-    </script>
+    Div[0].addEventListener("click", function () {
+        DHide[0].style.display = "block";
+    });
+</script>
 </body>
 </html>
