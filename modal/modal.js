@@ -1,15 +1,17 @@
 
 //使用发布-订阅者模式实现对象之间松耦合
 var emitter = {
-  // 注册事件
+  // 注册事件,订阅事件
   on: function(event, fn) {
-    var handles = this._handles || (this._handles = {}),
-      calls = handles[event] || (handles[event] = []);
-    // 找到对应名字的栈
-    calls.push(fn);
+      //hamdles表示存放订阅者,以及对应的回调函数
+    var handles = this._handles || (this._handles = {});
+      if(!handles[event]) {
+          handles[event] = [];
+      }
+      handles[event].push(fn);
     return this;
   },
-  // 解绑事件
+  // 解绑事件，解除订阅
   off: function(event, fn) {
     if(!event || !this._handles) this._handles = {};
     if(!this._handles) return;
@@ -31,16 +33,17 @@ var emitter = {
     }
     return this;
   },
-  // 触发事件
+  // 发布事件，依次触发里面存放的订阅者回调函数
   emit: function(event){
     var args = [].slice.call(arguments, 1);
+    console.log("args:is :"+args);
     var handles = this._handles;
-    var calls;
+    var calls; //该事件对应的所有回调函数
 
     if (!handles || !(calls = handles[event])) return this;
     // 触发所有对应名字的listeners
     for (var i = 0, len = calls.length; i < len; i++) {
-      calls[i].apply(this, args)
+      calls[i].apply(this, args);
     }
     return this;
   }
@@ -88,6 +91,10 @@ var emitter = {
     this.head = this.container.querySelector('.modal_head');
     // 窗体节点，在应用动画时有用
     this.wrap = this.container.querySelector('.modal_wrap');
+    //鼠标移动时记录的状态量
+     this.diffX = 0;
+     this.diffY = 0;
+     this.moving = 0;
     // 将options 复制到 组件实例上
     extend(this, options);
     this._initEvent();
@@ -111,7 +118,6 @@ var emitter = {
     setHead: function(head) {
           if(!head) return;
           if(head.nodeType === 1){
-              alert("11");
               this.head.innerHTML = "";
               this.head.appendChild(head);
           }else{
@@ -131,37 +137,37 @@ var emitter = {
       animateClass(this.wrap, this.animation.enter)
     },
 
-    hide: function(){
-      var container = this.container;
-      animateClass(this.wrap, this.animation.leave, function(){
-        document.body.removeChild(container);
-      })
-
+    hide: function() {
+        var container = this.container;
+        animateClass(this.wrap, this.animation.leave, function () {
+            document.body.removeChild(container);
+        });
     },
 
 
     // 初始化事件
-    _initEvent: function(){
+    _initEvent: function() {
 
       this.container.querySelector('.confirm').addEventListener(
-        'click', this._onConfirm.bind(this)
+          'click', this._onConfirm.bind(this,"确定退出")
       );
       this.container.querySelector('.cancel').addEventListener(
-        'click', this._onCancel.bind(this)
+          'click', this._onCancel.bind(this)
       );
-     this.container.querySelector('.modal_wrap').addEventListener(
-            'mousedown',this._onDown.bind(this),false
-        );
-     this.container.querySelector('.modal_wrap').addEventListener(
-            'mousemove',this._onMove.bind(this),false
-        );
-    this.container.querySelector('.modal_wrap').addEventListener(
-            'mouseup',this._onUp.bind(this)
-        );
-    },
+        this.wrap.addEventListener(
+       'mousedown',this._onDown.bind(this)
+       );
+       this.wrap.addEventListener(
+       'mousemove',this._onMove.bind(this)
+       );
+       this.wrap.addEventListener(
+       'mouseup',this._onUp.bind(this)
+       );
 
-    _onConfirm: function(){
-      this.emit('confirm');
+    },
+    _onConfirm: function(info){
+        //this.onConfirm();
+      this.emit('confirm',info); //发布执行confirm函数消息
       this.hide();
     },
 
@@ -169,14 +175,50 @@ var emitter = {
       this.emit('cancel');
       this.hide();
     },
-   _onDown: function() {
-       this.emit('down');
-   },
-   _onMove:function() {
+    _onDown:function(event) {
+        this.emit('down');
+        var e = event || window.event;
+
+        //拖拽的第一步,获取鼠标按下时距离当前窗口的水平、垂直坐标。(e.clienX,e.clienY)
+        // 并获取弹窗左边缘和上边缘距离浏览器左边与右边的距离 offsetLeft,offsetRight
+        // 记录鼠标按下点距弹窗左边缘和上边缘的距离diffX,diffY
+          this.diffX = e.clientX - this.wrap.offsetLeft;
+          this.diffY = e.clientY - this.wrap.offsetTop ;
+        //表明鼠标是按下的状态
+          this.moving = 1;
+      },
+      //拖拽第二步，移动鼠标过程中，不断改变对象的坐标值，实现弹窗跟随鼠标移动效果
+   _onMove:function(event) {
        this.emit('move');
+       var e = event || window.event;
+       if (this.moving === 0) return; //为0表示鼠标是没有按下，此时拖动弹窗，弹窗不动
+       //记录移动过程中鼠标点击的位置坐标
+       var newClientX = e.clientX;
+       var newClientY = e.clientY;
+
+       var left = newClientX - this.diffX;
+       var top =  newClientY - this.diffY;
+      if(left < 0){
+           left = 0;
+       }else if(left > document.documentElement.clientWidth - this.wrap.offsetWidth){
+           //没有使用document.body.clientWidth因为此时页面的高度只有100多，而现在要求弹窗在整个可视区中移动
+           left = document.documentElement.clientWidth - this.wrap.offsetWidth;
+       }
+
+       if(top < 0){
+           top = 0;
+       }else if(top > document.documentElement.clientHeight - this.wrap.offsetHeight ){
+           top = document.documentElement.clientHeight - this.wrap.offsetHeight;
+       }
+       this.wrap.style.left = left +'px';
+       this.wrap.style.top = top + 'px';
+
+
+
    },
    _onUp:function() {
-          this.emit('up');
+       this.emit('up');
+       this.moving = 0;
       }
 
   });

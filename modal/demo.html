@@ -45,16 +45,27 @@ var modal = new Modal({
   // onCancel: function(){
   //   console.log('cancel')
   // }
+
 });
 
 
-modal.on('confirm', function(){
-  console.log('confirm');
+modal.on('confirm', function(args){
+  console.log('confirm:'+args);
 });
+
 modal.on('cancel', function(){
   console.log('cancel');
 });
-modal.on('down',function(event){
+modal.on('down', function(){
+    console.log('down');
+});
+modal.on('move',function(){
+    console.log('move');
+});
+modal.on('up',function(){
+    console.log('up');
+});
+/*modal.on('down',function(event){
     var e = event || window.event;
     var target = e.target || window.srcElement;
     var moving;
@@ -93,10 +104,12 @@ modal.on('down',function(event){
     };
     document.querySelector('.modal_wrap').addEventListener('mouseup',up,false);
 
-});
+});*/
 document.querySelector('.u-trigger').addEventListener('click', function(){
-  modal.show(modal.content,modal.title);
-})
+     modal.show(modal.content,modal.title);
+    });
+
+
 </script>
 </body>
 </html>
