@@ -2,69 +2,54 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>焦点轮播图</title>
-
-   <link rel="stylesheet" href="demo.css">
+    <title>折叠轮播图</title>
+    <link rel="stylesheet" href="demo.css">
 </head>
 <body>
-
 <div id="container">
-    <div id="list" >    
+    <div id="list">
         <img src="../img/demo1.jpg" alt="1"/>
         <img src="../img/demo2.jpg" alt="2"/>
         <img src="../img/demo3.jpg" alt="3"/>
         <img src="../img/demo4.jpg" alt="4"/>
-        <img src="../img/demo5.jpg" alt="5"/>      
+        <img src="../img/demo5.jpg" alt="5"/>
     </div>
-   
 </div>
-    <script src="move.js"></script>
-    <script>
+<script src="move.js"></script>
+<script>
 
-        window.onload = function () {
+    window.onload = function () {
+        var list = document.getElementById('list');
+        var listI = list.getElementsByTagName('img');
+        //给每一张图片添加事件绑定
+        for (var i = 0; i < listI.length; i++) {
+            listI[i].addEventListener("mouseover", function () {
+                change(this);
+            }, false);
 
-            var list = document.getElementById('list');     
-             var listI = list.getElementsByTagName('img'); 
-               //给每一张图片添加事件绑定
-                  for(var i=0;i<listI.length;i++){ 
-                         
-                         listI[i].addEventListener("mouseover",function(){
-                            change(this);
-                         },false);
-                    
-                    }
+        }
+        //鼠标移出list区域，图片回到初始时的宽度200
 
-                //鼠标移出list区域，图片回到初始时的宽度200
-                 
-                   list.addEventListener("mouseout",function(){       
-                            for(var i=0;i<list.children.length;i++){
-                                  startMove(list.children[i],{"width":"200","opacity":"70"},50);
-                            }                                     
-                    },false);
-              
+        list.addEventListener("mouseout", function () {
+            for (var i = 0; i < list.children.length; i++) {
+                startMove(list.children[i], {"width": "200", "opacity": "70"}, 50);
+            }
+        }, false);
 
-                  //当鼠标移过图片时，让焦点没在其他图片上的图片宽度变为100px,透明度变为0.7，而鼠标移动到的那张图片宽度变为600
-                    function change(obj){ 
-                           
-                         var children = obj.parentNode.children; //为了获得其他img的兄弟节点   
-                                               
-                           for(var j=0;j<children.length;j++){                              
-                                        if(obj!=children[j]){
-                                            startMove(children[j],{"width":"100","opacity":"70"},50,startMove(obj,{"width":"600","opacity":"100"},50));
-                                        }
-                                    };
-                             
-                            
-                         }
-                    
-                             
-                                
-                  
-                    
-              
-                 
-   }        
+        //当鼠标移过图片时，让焦点没在其他图片上的图片宽度变为100px,透明度变为0.7，而鼠标移动到的那张图片宽度变为600
+        function change(obj) {
+            var children = obj.parentNode.children; //为了获得其他img的兄弟节点
+            for (var j = 0; j < children.length; j++) {
+                if (obj != children[j]) {
+                    startMove(children[j], {"width": "100", "opacity": "70"}, 50, startMove(obj, {
+                        "width": "600",
+                        "opacity": "100"
+                    }, 50));
+                }
+            }
+        }
+    }
 
-    </script>
+</script>
 </body>
 </html>
