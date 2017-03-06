@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习使用RequireJS</title>
+    <style>
+        #caculator{
+            text-align: center;
+            margin-top: 100px;
+        }
+        input, button, span{
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="caculator">
+    <h2>Caculator</h2>
+    <input type="text" class='j-left'>
+    <button class='j-add'>+</button>
+    <input type="text" class='j-right'>
+    =
+    <span class="j-result"></span>
+</div>
+<script src="require.js"></script>
+<script>
+    require(["cancular"],function( c ) {
+        new c.Caculator(document.getElementById("caculator"));
+    });
+
+</script>
+
+</body>
+</html>
