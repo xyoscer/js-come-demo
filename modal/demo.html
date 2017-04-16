@@ -1,112 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Modal模态组件</title>
-  <link rel="stylesheet" href="animate.css">
-  <link rel="stylesheet" href="modal.css">
-  <style>
-  body{
-    background-color: #aaa;
-  }
-  .u-trigger{
-    display: block;
-    width: 120px;
-    height: 32px;
-    font-size: 16px;
-    margin: 60px auto;
-  }
-  </style>
+    <meta charset="UTF-8">
+    <title>Modal模态组件</title>
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="modal.css">
+    <style>
+        body {
+            background-color: #aaa;
+        }
+
+        .u-trigger {
+            display: block;
+            width: 120px;
+            height: 32px;
+            font-size: 16px;
+            margin: 60px auto;
+        }
+    </style>
 </head>
 <body>
-<button class='u-trigger' >show modal</button>
+<button class='u-trigger'>show modal</button>
 <script src='animate.js'></script>
 <script src='modal.js'></script>
 <script>
-var modal = new Modal({
-  // 1. 内容配置
-  content:  "<div class='form-group'>"
-            +"<label for='user'>用户名</label>"
-            +"<input type='text' id='user' name='user' class='form-control' placeholder='请输入用户名'>"
-            +"</div>"
-          , //可传入节点和字符串
-  // 2.标题配置
-  title: "登录系统",
-  // 3. 动画设置，可以很容易扩展动画
-  animation: {
-    enter: 'rotateIn',
-    leave: 'rotateOut'
-  }
-  // // 3. confirm回调
-  // onConfirm: function(){
-  //   console.log('ok')
-  // },
-  // // 4. cancel回调
-  // onCancel: function(){
-  //   console.log('cancel')
-  // }
-
-});
-
-
-modal.on('confirm', function(args){
-  console.log('confirm:'+args);
-});
-
-modal.on('cancel', function(){
-  console.log('cancel');
-});
-modal.on('down', function(){
-    console.log('down');
-});
-modal.on('move',function(){
-    console.log('move');
-});
-modal.on('up',function(){
-    console.log('up');
-});
-/*modal.on('down',function(event){
-    var e = event || window.event;
-    var target = e.target || window.srcElement;
-    var moving;
-    //拖拽的第一步,记录鼠标相对于拖动对象（left和top值）坐标
-    var diffX = e.clientX - target.parentNode.offsetLeft;
-    var diffY = e.clientY - target.parentNode.offsetTop;
-    moving = !0;
-    //拖拽第二步，移动鼠标过程中，不断改变对象的坐标值，实现弹窗跟随鼠标移动效果
-    var move = function(e) {
-         if(!moving) return;
-        var left = e.clientX-diffX;
-        var top = e.clientY-diffY;
-
-        if(left<0){
-            left = 0;
-        }else if(left>document.documentElement.clientWidth - target.parentNode.offsetWidth){
-            //没有使用document.body.clientWidth因为此时页面的高度只有100多，而现在要求弹窗在整个可视区中移动
-            left = document.documentElement.clientWidth - target.parentNode.offsetWidth;
+    var modal = new Modal({
+        // 1.内容配置
+        content: "<div class='form-group'>"
+        + "<label for='user'>用户名</label>"
+        + "<input type='text' id='user' name='user' class='form-control' placeholder='请输入用户名'>"
+        + "</div>", //可传入节点和字符串
+        // 2.标题配置
+        title: "登录系统",
+        // 3. 动画设置，可以很容易扩展动画
+        animation: {
+            enter: 'pulse',
+            leave: 'rotateOut'
         }
+        /* //  3. confirm回调
+         onConfirm: function(){
+         console.log('ok')
+         },
+         // 4. cancel回调
+         onCancel: function(){
+         console.log('cancel')
+         }
+         */
+    });
 
-        if(top<0){
-            top = 0;
-        }else if(top>document.documentElement.clientHeight - target.parentNode.offsetHeight ){
-            top = document.documentElement.clientHeight - target.parentNode.offsetHeight;
-        }
-        target.parentNode.style.left = left + 'px';
-        target.parentNode.style.top = top + 'px';
-    };
+    //订阅消息
+    modal.on('confirm', function (args) {
+        console.log('confirm:' + args);
+    });
+    modal.on('cancel', function () {
+        console.log('cancel');
+    });
+    modal.on('down', function () {
+        console.log('down');
+    });
 
-    document.querySelector('.modal_wrap').addEventListener('mousemove',move,false);
-    //拖拽第三步，鼠标松开，解除鼠标移动事件
 
-    var up = function(e) {
-        moving = !1;
-      //  document.removeEventListener("mousemove",move);
-    };
-    document.querySelector('.modal_wrap').addEventListener('mouseup',up,false);
-
-});*/
-document.querySelector('.u-trigger').addEventListener('click', function(){
-     modal.show(modal.content,modal.title);
+    document.querySelector('.u-trigger').addEventListener('click', function () {
+        modal.show(modal.content, modal.title);
     });
 
 
