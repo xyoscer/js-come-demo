@@ -1,4 +1,4 @@
-var animateClass = (function(){
+define([],function (){
 
   var testNode = document.createElement('div');
 
@@ -125,8 +125,12 @@ var animateClass = (function(){
     node.addEventListener(transitionEnd, onAnimateEnd)
   }
 
-  return animateClass;
+  // return animateClass;
+  return {
+    animateClass: animateClass
+
+  };
 
 
-})()
+})
 
